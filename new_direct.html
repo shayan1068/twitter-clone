@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>New Direct Message to @{{ recipient.username }}</h2>
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.text(class="form-control", placeholder="Message text") }}
+    <button class="btn btn-primary">Send</button>
+  </form>
+{% endblock %}

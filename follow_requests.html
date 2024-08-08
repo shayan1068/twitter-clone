@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <h2 class="join-message">Follow Requests</h2>
+      {% if requests %}
+        <ul class="list-group">
+          {% for request in requests %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <div>
+                <a href="/users/{{ request.requester.id }}">{{ request.requester.username }}</a> wants to follow you.
+              </div>
+              <div>
+                <form method="POST" action="/users/follow-requests/approve/{{ request.id }}" style="display: inline;">
+                  <button class="btn btn-success">Approve</button>
+                </form>
+                <form method="POST" action="/users/follow-requests/deny/{{ request.id }}" style="display: inline;">
+                  <button class="btn btn-danger">Deny</button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No follow requests.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Direct Messages</h2>
+  <ul class="list-group">
+    {% for message in messages %}
+      <li class="list-group-item">
+        <a href="/users/{{ message.sender.id }}">@{{ message.sender.username }}</a> to 
+        <a href="/users/{{ message.recipient.id }}">@{{ message.recipient.username }}</a>
+        <p>{{ message.text }}</p>
+        <span class="text-muted">{{ message.timestamp.strftime('%d %B %Y') }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
